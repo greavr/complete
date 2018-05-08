@@ -27,7 +27,7 @@ Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore
   1. Update the IAM role for the default Computer instance to include permissions for *Cloud Datastore Owner*
   2. Connect to the instance via SSH
   3. Run the following commands to install dependancies: <br />
-     `sudo apt update'<br />
+     `sudo apt update`<br />
 	 `apt install python-pip -y && pip install mysql-connector-python`
 2. Create Cloud SQL instance using the above specifications
   1. Sample data (in SQL format) can be found in the (/RawData/)[/RawData/] folder. The *Products* list is in a compiled zip folder as it is too big to upload raw
