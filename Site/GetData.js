@@ -199,7 +199,7 @@ function RecordClick() {
 	
 	//Make a call to log the value
 	var http = new XMLHttpRequest();
-	var url = "https://us-central1-bb-autocomplete-203419.cloudfunctions.net/AddClick";
+	var url = "<ADD CLOUD FUNCTION URL HERE>";
 	http.onreadystatechange = callbackFunction(http);
 	http.open('POST', url, true);
 	http.setRequestHeader('Content-Type', 'application/json');
