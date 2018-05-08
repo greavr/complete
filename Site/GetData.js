@@ -41,6 +41,8 @@ function autocomplete(inp, arr) {
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
+			  //Item Selected Make Call To Update ClickCount
+			  RecordClick();
           });
           a.appendChild(b);
 		  a.appendChild(document.createElement("BR"));
@@ -187,4 +189,32 @@ function releventProducts(InputCharacters) {
 		
 		//Return Value
 		return LoadUrl;
+}
+
+//Call Cloud Function To Update Record
+function RecordClick() {
+	var SelectedValue = document.getElementById('theInput').value;
+	var jsonedValue = JSON.stringify({message: SelectedValue});
+	console.log(jsonedValue);
+	
+	//Make a call to log the value
+	var http = new XMLHttpRequest();
+	var url = "https://us-central1-bb-autocomplete-203419.cloudfunctions.net/AddClick";
+	http.onreadystatechange = callbackFunction(http);
+	http.open('POST', url, true);
+	http.setRequestHeader('Content-Type', 'application/json');
+	http.setRequestHeader("Access-Control-Allow-Origin", "*");
+    http.setRequestHeader("Access-Control-Allow-Credentials", "true");
+    http.setRequestHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    http.setRequestHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+	http.onreadystatechange = callbackFunction(http);
+	http.send(jsonedValue);
+	
+	console.log(http.status);
+	
+}
+
+function callbackFunction(xmlhttp) 
+{
+    //alert(xmlhttp.responseXML);
 }
