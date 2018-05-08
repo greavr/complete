@@ -26,6 +26,8 @@ It was also assumed that controlling a product catalog of this size is typically
 
 ## Basic Overview
 Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore, products are loaded via javascript calling JSON files. A Compute instance does compiling twice a day for all products (CRON Job controlled) and a list of popular products updated hourly. A Cloud Function is used to record which option is selected from the drop down menu and updates a count click total in the Cloud SQL.
+The JSON files are loaded after the third letter is entered. Although only the first letter is used to pull the relative JSON file of products this was done to ensure not too many calls are made. If the character cound falls below 3 the default quick list is used again (but not called). 
+<br />Longer product names are truncated to 57 characters.
 
 ## Setup Guide
 1. Create Compute Instance
@@ -59,3 +61,4 @@ Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore
 * Make the site prettier
 * Security is super open right now. This **NEEDS** to be locked down heavily.
 * Add something to demonstrate back end process
+* Fix autocomplet bug, there is a gap after the third letter is entered you need to enter a 4th for autocomplete to re-appear
