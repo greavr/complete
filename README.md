@@ -24,19 +24,20 @@ Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore
 
 ## Setup Guide
 1. Create Compute Instance
-  1. Update the IAM role for the default Computer instance to include permissions for *Cloud Datastore Owner*
-  2. Connect to the instance via SSH
-  3. Run the following commands to install dependancies: <br />
+  - Update the IAM role for the default Computer instance to include permissions for *Cloud Datastore Owner*
+  - Connect to the instance via SSH
+  - Run the following commands to install dependancies: <br />
      `sudo apt update`<br />
 	 `apt install python-pip -y && pip install mysql-connector-python`
 2. Create Cloud SQL instance using the above specifications
-  1. Sample data (in SQL format) can be found in the (/RawData/)[/RawData/] folder. The *Products* list is in a compiled zip folder as it is too big to upload raw
-  2. Add the public IP into the *Authorisations* tab using a */32* CIDR
-  3. Create a master DB
-  4. Clone the project and follow the setup guide found (/scripts/)[/scripts/]
+  - Sample data (in SQL format) can be found in the (/RawData/)[/RawData/] folder. The **Products** list is in a compiled zip folder as it is too big to upload raw
+  - Add the public IP into the *Authorisations* tab using a **/32** CIDR
+  - Create a master DB
+  - Clone the project and follow the setup guide found (/scripts/)[/scripts/]
 3. Create a Cloud Function
-  1. Copy the files from the (/functions/)[/functions/] into the new project
-  2. Follow the setup guide in (/functions/)[/functions/] 
+  - Copy the files from the (/functions/)[/functions/] into the new project
+  - Follow the setup guide in (/functions/)[/functions/]
+4. 
 
   
 ## Notes
