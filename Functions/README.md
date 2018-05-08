@@ -12,8 +12,9 @@ There is two scripts:
 
 ## Setup Guide
 1. Clone project to a folder on the local server `git clone https://github.com/greavr/AutoComplete.git`
-2. Set the permissions `chmod +x AutoComplete\Functions\*`
-3. Create two cron tasks
+2. Install the required dependencies `sudo apt install python-pip -y && pip install mysql-connector-python`
+3. Set the permissions `chmod +x AutoComplete\Functions\*`
+4. Create two cron tasks
   1. One for the twice daily task to rebuild product list : `echo "00 */12 * * * ~/AutoComplete/Functions/SaveToStorage.py" >> mycron && crontab mycron && rm mycron`
   2. Second one for the hourly update task of the most popular click `echo "00 * * * * ~/AutoComplete/Functions/QuickList.py" >> mycron && crontab mycron && rm mycron`
 
