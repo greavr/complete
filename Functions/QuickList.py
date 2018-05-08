@@ -52,7 +52,7 @@ def CreateJson( ArrayOfData, FileName ) :
 # Upload to Google Cloud Store
 def upload_files(fileName):
     print("Uploading file " + fileName + " to gs://"+ targetBucket + "/")
-    p = subprocess.Popen('gsutil -h "Content-Type:application/json" -h "Cache-Control:max-age=0" cp '+ fileName +' gs://'+ targetBucket, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    p = subprocess.Popen('gsutil -h "Content-Type:application/json" -h "Cache-Control:max-age=0" cp '+ fileName +' gs://'+ targetBucket + "/", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     retval = p.wait()
 	
 # Run Query
