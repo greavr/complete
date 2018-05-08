@@ -1,6 +1,8 @@
 # AutoComplete
 
-This project is designed to create a scalable largely distribued data platform for autocomplete data.
+This project is designed to create a scalable largely distribued data platform for autocomplete data. <br />
+The goal behind this approach was for the autocomplete portion of the page (which will not be all the page) to be a scalable subset of a site. By placing files in Cloud Storage you are able to have the files accessibly reliably globally repeatably. <br />
+It was also assumed that controlling a product catalog of this size is typically done from a Relational Database, although the ideal solution would be a NoSQL solution, so that locking and other update related tasks do not bottle neck and scale easier.
 
 ## Key Components
 * Cloud SQL
@@ -39,11 +41,17 @@ Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore
    2. Follow the setup guide in (/functions/)[/functions/]
 4. Copy all the files from the (/Site/)[/Site/] folder to the root of the newly created bucket
    1. Set all the files to public
+   2. Configure a CORS policy for the bucket, run these commands on your computer instance:
+      `echo '[{"origin": ["*"],"responseHeader": ["Content-Type"],"method": ["GET", "HEAD"],"maxAgeSeconds": 3600}]' > cors-config.json` <br />
+	  `gsutil cors set cors-config.json gs://<YOURBUCKET>`
  
-
   
 ## Notes
-* This solution
+* This solution could be improved upon, using a pub/sub queue for updates to clicks
+* Alternative approach would be to store the data in Google Spanner and then have web heads read the data
+
 ## Todo
-* Add data validation on input
-* If scale is larger put update in a pub/sub que so updates can be more scalabe.
+* Switch out computer instance to use MySQL Data Port Proxy per the guide here: (https://cloud.google.com/sql/docs/mysql/connect-compute-engine)
+* Put the DB parameters in as environmental variables in (index.js)[/functions/index.js]
+* Make the site prettier
+* Security is super open right now. This **NEEDS** to be locked down heavily.
