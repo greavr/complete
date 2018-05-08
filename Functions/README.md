@@ -1,28 +1,23 @@
-# Scripts
+# Functions
 
-These files are designed to be ran on a batch basis from one node. This does not need to scale regardless of the amount of users.
-*Consideration should be given* if the product catalog is becoming larger in regards to a specific first letter.
+This function is designed to run on demand, it takes a JSON parameter *message* and uses that to update the *quickclick* count in the primary DB. Due to similar products it updates the value for all products sharing the same *name*.
 
 ## What it does
-There is two scripts:
-- [SaveToStorage.py](SaveToStorage.py)
-  - This Script connects to the primary DB and does a full pull of distinct products based on *name*. It then compiles to grouped JSON files based on the letters of the alphabet. The script uploads them to a Google Cloud Storage bucket using the cli.
-- [QuickList.py](QuickList.py)
-  - This script connects to the primary DB and does a pull of the top 1000 distinct products based on the number value in the *quickclicks* column, desc.
-
+There is two files:
+- [package.json](package.json)
+  - This file contains the dependencies for the Cloud Function to work, that is MySQL client
+- [index.js](index.js)
+  - This script accepts all input and uses the body of "message" to pass along a mysql update query to the primary DB. 
+  
 ## Setup Guide
-1. Clone project to a folder on the local server `git clone https://github.com/greavr/AutoComplete.git`
-2. Install the required dependencies `sudo apt install python-pip -y && pip install mysql-connector-python`
-3. Set the permissions `chmod +x AutoComplete\Functions\*`
-4. Create two cron tasks
-  1. One for the twice daily task to rebuild product list : `echo "00 */12 * * * ~/AutoComplete/Functions/SaveToStorage.py" >> mycron && crontab mycron && rm mycron`
-  2. Second one for the hourly update task of the most popular click `echo "00 * * * * ~/AutoComplete/Functions/QuickList.py" >> mycron && crontab mycron && rm mycron`
-5. You will need to update the parameters in both files for MySQL to use, following commands will do it:
-  1. `sed -i -e 's/<YOUR BUCKET>/rgreaves-mysite/g' *.py`
-  2. `sed -i -e 's/<DB IP>/1.2.3.4/g' *.py`
-  3. `sed -i -e 's/<DB USER>/myuser/g' *.py`
-  4. `sed -i -e 's/<DB PWD>/supersecret/g' *.py`
-  5. `sed -i -e 's/<DB>/bestbuy/g' *.py`
+1. Create a new Cloud Function and paste in both the *index.js* and *package.json*
+2. You will need to update the MySQL parameters to the relative options
+3. Update the URL in [GetData.js](../Site/GetData.js) (Line 202)
+
   
 ## Notes
-* Distinct is used due to the way that BestBuy lists the same product multiple times in their product catalog under different categories
+* You may encounter CORS errors calling the Cloud Function from the website. Using DNS and CNames will help with this, or failing that the Chrome CORS Extension: (Click Here)[https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en]
+
+## Todo
+* Add data validation on input
+* If scale is larger put update in a pub/sub que so updates can be more scalabe.
