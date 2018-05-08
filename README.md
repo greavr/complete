@@ -20,7 +20,10 @@ It was also assumed that controlling a product catalog of this size is typically
 * Cloud Datastore
   * One bucket
   * Public access all files
- 
+
+## Working Demo
+### (Click Here)[https://storage.googleapis.com/rgreaves-mysite/index.html]  
+
 ## Basic Overview
 Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore, products are loaded via javascript calling JSON files. A Compute instance does compiling twice a day for all products (CRON Job controlled) and a list of popular products updated hourly. A Cloud Function is used to record which option is selected from the drop down menu and updates a count click total in the Cloud SQL.
 
@@ -55,3 +58,4 @@ Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore
 * Put the DB parameters in as environmental variables in (index.js)[/functions/index.js]
 * Make the site prettier
 * Security is super open right now. This **NEEDS** to be locked down heavily.
+* Add something to demonstrate back end process
