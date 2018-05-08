@@ -9,11 +9,11 @@ import string
 import subprocess
 from subprocess import call
 
-targetBucket = 'rgreaves-mysite';
-hostname = '35.224.221.233'
-username = 'data_reader'
-password = 'Set2=$u^qV4#5);*'
-database = 'bestbuy'
+targetBucket = '<YOUR BUCKET>';
+hostname = '<DB IP>'
+username = '<DB USER>'
+password = '<DB PWD>'
+database = '<DB>'
 
 # Query the DB for each character
 def doQuery(connection,searchChar=0) :

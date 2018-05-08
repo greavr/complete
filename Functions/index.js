@@ -14,10 +14,10 @@ exports.AddRecord = (req, res) => {
 
 	var mysql = require('mysql');
     var c = mysql.createConnection({
-      socketPath: '/cloudsql/' + 'bb-autocomplete-203419:us-central1:productmaster',
-      user     : 'data_reader',
-      password : 'Set2=$u^qV4#5);*',
-      database: 'bestbuy'
+      socketPath: '/cloudsql/' + '<PROJECT ID>:<REGION>:<DB INSTANCE>',
+      user     : '<DATA USER>',
+      password : '<PASSWORD>',
+      database: '<DATABASE>'
     });
     c.connect();
     var ThisQuery = "update products SET quickclicks = quickclicks + 1 where name = '" + req.body.message + "';";

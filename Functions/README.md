@@ -17,6 +17,12 @@ There is two scripts:
 4. Create two cron tasks
   1. One for the twice daily task to rebuild product list : `echo "00 */12 * * * ~/AutoComplete/Functions/SaveToStorage.py" >> mycron && crontab mycron && rm mycron`
   2. Second one for the hourly update task of the most popular click `echo "00 * * * * ~/AutoComplete/Functions/QuickList.py" >> mycron && crontab mycron && rm mycron`
-
+5. You will need to update the parameters in both files for MySQL to use, following commands will do it:
+  1. `sed -i -e 's/<YOUR BUCKET>/rgreaves-mysite/g' *.py`
+  2. `sed -i -e 's/<DB IP>/1.2.3.4/g' *.py`
+  3. `sed -i -e 's/<DB USER>/myuser/g' *.py`
+  4. `sed -i -e 's/<DB PWD>/supersecret/g' *.py`
+  5. `sed -i -e 's/<DB>/bestbuy/g' *.py`
+  
 ## Notes
 * Distinct is used due to the way that BestBuy lists the same product multiple times in their product catalog under different categories
