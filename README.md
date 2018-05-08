@@ -22,7 +22,7 @@ It was also assumed that controlling a product catalog of this size is typically
   * Public access all files
 
 ## Working Demo
-### (Click Here)[https://storage.googleapis.com/rgreaves-mysite/index.html]  
+(Click Here)[https://storage.googleapis.com/rgreaves-mysite/index.html]  
 
 ## Basic Overview
 Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore, products are loaded via javascript calling JSON files. A Compute instance does compiling twice a day for all products (CRON Job controlled) and a list of popular products updated hourly. A Cloud Function is used to record which option is selected from the drop down menu and updates a count click total in the Cloud SQL.
