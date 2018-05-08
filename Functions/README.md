@@ -6,7 +6,7 @@ These files are designed to be ran on a batch basis from one node. This does not
 ## What it does
 There is two scripts:
 - [SaveToStorage.py](SaveToStorage.py)
-  -This Script connects to the primary DB and does a full pull of distinct products based on *name*. It then compiles to grouped JSON files based on the letters of the alphabet. The script uploads them to a Google Cloud Storage bucket using the cli.
+  - This Script connects to the primary DB and does a full pull of distinct products based on *name*. It then compiles to grouped JSON files based on the letters of the alphabet. The script uploads them to a Google Cloud Storage bucket using the cli.
 - [QuickList.py](QuickList.py)
   - This script connects to the primary DB and does a pull of the top 1000 distinct products based on the number value in the *quickclicks* column, desc.
 
