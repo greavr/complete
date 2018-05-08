@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Product Info -- </title>
+		<link rel="stylesheet" type="text/css" href="Style.css">
+	</head>
+
+	<body>
+		<!-- Includes //-->
+		<script src="ProductInfo.js"></script>
+		
+		<!-- Notes about the process //-->
+		<ol>
+		<li> For demo purposes this uses data passed via the Parameters to display info
+		</ol>
+		
+		<h1 id="ProductName">{PRODUCT NAME}</h1>
+		<h3 id="category_name">{CATEGORY NAME}</h3>
+		
+		<p id="description">{PRODUCT DESCRIPTION}</p>
+		
+		<b>Price:</b><div id="price">{PRICE}</div> | <b>Shipping:</b> <div id="shipping">{SHIPPING}</div> | <b>Total:</b> <div id="Total">{TOTAL COST}</div></p>
+		<p><b>Manufacturer: </b><div id="manufacturer">{MANUFACTURER}</div> | <b>Model: </b><div id="model">{MODEL}</div></p>
+		
+		<img src="" id="thisimage" />
+
+		<!-- Execution Script //-->
+		<script>
+			buildPage();
+		</script>
+	</body>
+
+</html>
+
+

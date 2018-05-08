@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Product Auto Complete</title>
+		<link rel="stylesheet" type="text/css" href="Style.css">
+	</head>
+
+	<body>
+		<!-- Includes //-->
+		<script src="GetData.js"></script>
+		<script src="AddData.js"></script>
+
+		<!-- Notes about the process //-->
+		Autocomplete Process:
+		<ol>
+		<li> Load top 1000 products first
+		<li> Start searching after the first character (Case insensitive)
+		<li> When Entering more than 3 characters pull a list of products starting with those characters
+		<li> When Option is selected send click count back to Master DB to help guide top product list
+		<li> Take to new page with product info
+		</ol>
+		
+		<!-- Auto Complete Box //-->
+		<p>
+		<form autocomplete="off" target="_blank" action="productinfo.html"
+		  <div class="autocomplete" style="width:600px;">
+			<input id="theInput" type="text" name="name" placeholder="Product">		
+		  </div>
+		  <input type="submit">
+		</form>
+
+		<!-- Execution Script //-->
+		<script>
+			var quickProducts = quickLoad("https://storage.googleapis.com/rgreaves-mysite/quickload.json");
+			autocomplete(document.getElementById("theInput"), quickProducts);
+		</script>
+	</body>
+
+</html>
