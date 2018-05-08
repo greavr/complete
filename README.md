@@ -37,12 +37,13 @@ Products are stored in a Cloud SQL. Sample site is served out of Cloud Datastore
 3. Create a Cloud Function
    1. Copy the files from the (/functions/)[/functions/] into the new project
    2. Follow the setup guide in (/functions/)[/functions/]
-4. 
+4. Copy all the files from the (/Site/)[/Site/] folder to the root of the newly created bucket
+   1. Set all the files to public
+ 
 
   
 ## Notes
-* You may encounter CORS errors calling the Cloud Function from the website. Using DNS and CNames will help with this, or failing that the Chrome CORS Extension: (Click Here)[https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en]
-
+* This solution
 ## Todo
 * Add data validation on input
 * If scale is larger put update in a pub/sub que so updates can be more scalabe.
