@@ -4,6 +4,7 @@ function autocomplete(inp, arr) {
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   var replaced = false;
+  var Requested = false;
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
@@ -48,7 +49,10 @@ function autocomplete(inp, arr) {
 		// Rebuild Array for next time
 		if (val.length == 3) {
 			//Load new file
-			ReloadAutoSearch(val);
+			if (!Requested) {
+				ReloadAutoSearch(val);
+				Requested = true;
+			}
 			replaced = true;
 		} else if (replaced && (val.length < 3)){
 			//Default back to top 1000 products
@@ -133,6 +137,7 @@ function quickLoad(whichFile) {
 		for(var x in data){
 		  arr.push(data[x].name);
 		}
+		console.log(data);
 	  } else {
 		// Die quietly for now
 		console.log ("Bad Status" + request.status);
@@ -164,13 +169,19 @@ function ReloadAutoSearch(InputVar) {
 		}
 }
 
+//Validate input
+function isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); } 
+
 //Work out which file to load
 function releventProducts(InputCharacters) {
 		// This function will return the full product listing by letter selected
+		InputCharacters = InputCharacters.toLowerCase();
 		var LoadUrl = "https://storage.googleapis.com/rgreaves-mysite/quickload.json";;
 		
 		//Will Logic Check for characters and go from there:
-		if (!!InputCharacters) {
+		if (isNumber (InputCharacters)) {
+			LoadUrl = "https://storage.googleapis.com/rgreaves-mysite/pre-compiled/1.json";
+		} else if (!!InputCharacters) {
 			LoadUrl = "https://storage.googleapis.com/rgreaves-mysite/pre-compiled/" + InputCharacters.substr(0,1) + ".json";
 		} 
 		
